@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Car Owner</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .car {
+            font-size: 60px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            background: #111;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="car">🚗</div>
+
+        <h1>Need the car owner?</h1>
+
+        <p>
+            If you need the owner to move their car,
+            you can request a call.
+        </p>
+
+        <button onclick="contactOwner()">
+            📞 Contact Owner
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+    <script>
+        async function contactOwner() {
+    try {
+        const response = await fetch("http://localhost:3000/contact-owner");
+
+        const data = await response.json();
+
+        document.getElementById("message").innerText =
+            "Request sent! The owner has been contacted.";
+            
+        console.log(data);
+
+    } catch (error) {
+        document.getElementById("message").innerText =
+            "Something went wrong. Please try again.";
+            
+        console.error(error);
+    }
+}
+
+        
+    </script>
+
+</body>
+</html>
